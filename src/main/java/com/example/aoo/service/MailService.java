@@ -21,7 +21,7 @@ public class MailService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         // Create the request body
-        String requestBody = "{\"to\": \"" + to + "\", \"subject\": \"" + subject + "\", \"content\": \"" + content + "\"}";
+        String requestBody = "{\"recipient\": \"" + to + "\", \"subject\": \"" + subject + "\", \"content\": \"" + content + "\"}";
 
         // Create the HTTP entity with headers and body
         HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
