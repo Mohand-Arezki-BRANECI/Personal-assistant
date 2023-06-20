@@ -26,6 +26,9 @@ public class RequestProcessor {
         if(requestSplit[0].equals("!date")){
             return timeService.getDate();
         }
+        if(requestSplit[0].equals("!fin")){
+            return timeService.getEndOfClass();
+        }
          if(requestSplit[0].equals("!mail")){
             return mailService.sendMail(requestSplit[1],requestSplit[2],requestSplit[3]);
          }
