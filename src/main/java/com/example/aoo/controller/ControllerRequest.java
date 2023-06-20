@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class ControllerRequest {
-    public final RequestProcessor requestProcessor;
 
-public ControllerRequest(RequestProcessor requetteProcessor) {
+    public final RequestProcessor requestProcessor;
+    
+    public ControllerRequest(RequestProcessor requetteProcessor) {
         this.requestProcessor = requetteProcessor;
     }
 
@@ -20,7 +21,5 @@ public ControllerRequest(RequestProcessor requetteProcessor) {
 
         return requestProcessor.processRequette(requestDTO.getRequest());
     }
-
-
 
 }
