@@ -12,8 +12,9 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class DateTimeService {
 
+@Value("${time.end}")
+String time;
 
-    private static final Timestamp timeEndOfClass = new Timestamp(1688749200000L);
 
 
     public  ResponseEntity<String> getTime() {
@@ -35,6 +36,7 @@ public class DateTimeService {
 
 
     public ResponseEntity<String> getEndOfClass() {
+        Timestamp timeEndOfClass = new Timestamp(Long.parseLong(time));
         Timestamp timeDiffernce = new Timestamp(timeEndOfClass.getTime()- Instant.now().toEpochMilli());
         String reponse = "";
         if (timeDiffernce.getTime() > 0 ){
