@@ -5,7 +5,7 @@ FROM adoptopenjdk:17-jdk-hotspot
 WORKDIR /app
 
 # Copy the packaged JAR file into the container
-COPY target/*.jar .
+COPY target/AOO-0.0.1-SNAPSHOT.jar .
 
 # Expose the port on which the application will run
 EXPOSE 8080
