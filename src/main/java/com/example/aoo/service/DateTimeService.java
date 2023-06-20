@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -14,9 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class DateTimeService {
 
 
-//    private static final Timestamp timeEndOfClass = new Timestamp(1688742000000L);
     private static final Timestamp timeEndOfClass = new Timestamp(1688749200000L);
-
 
 
     public  ResponseEntity<String> getTime() {
@@ -28,7 +25,7 @@ public class DateTimeService {
     }
 
 
-    public  ResponseEntity<String> getDate() {
+    public ResponseEntity<String> getDate() {
         String pattern = "dd-MM-yyyy";
         LocalDateTime currentDate = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
