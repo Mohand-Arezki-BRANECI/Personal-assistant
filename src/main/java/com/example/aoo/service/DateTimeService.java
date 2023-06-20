@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -12,6 +15,10 @@ import java.util.TimeZone;
 
 @Service
 public class DateTimeService {
+
+    @Value("${time.end}")
+    private String time;
+
 
     public ResponseEntity<String> getTime(String[] requestSplit) {
         if(requestSplit.length == 1 ){
@@ -41,7 +48,9 @@ public class DateTimeService {
 
     public ResponseEntity<String> getTimeInCountry(String country) {
         ZoneId countryTime = getZoneId(country);
-
+        if (countryTime == null) {
+            return new ResponseEntity<>("Pays non reconnu", HttpStatus.BAD_REQUEST);
+        }
         ZonedDateTime time = ZonedDateTime.now(countryTime);
 
         String pattern = "HH:mm:ss";
@@ -61,6 +70,11 @@ public class DateTimeService {
 
     public ResponseEntity<String> getDateInCountry(String country) {
         ZoneId countryDate = getZoneId(country);
+
+        if (countryDate == null) {
+            return new ResponseEntity<>("Pays non reconnu", HttpStatus.BAD_REQUEST);
+        }
+
         ZonedDateTime date = ZonedDateTime.now(countryDate);
 
         String pattern = "dd-MM-yyyy";
@@ -72,19 +86,13 @@ public class DateTimeService {
 
     public ZoneId getZoneId(String country) {
         String[] tz = TimeZone.getAvailableIDs();
-        ZoneId timeZone = null;
-
-        try {
             for (String t : tz) {
                 String id = t.toLowerCase();
                 if (id.equals(country)) {
-                    timeZone = TimeZone.getTimeZone(t).toZoneId();
+                  return TimeZone.getTimeZone(t).toZoneId();
                 }
             }
-        }catch (NullPointerException e){
-            System.out.println("TimeZone du pays non trouvé");
-        }
-        return timeZone;
+        return null;
     }
  public ResponseEntity<String> getEndOfClass() {
         Timestamp timeEndOfClass = new Timestamp(Long.parseLong(time));
