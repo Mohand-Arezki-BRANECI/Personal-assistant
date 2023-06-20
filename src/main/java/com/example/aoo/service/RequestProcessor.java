@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 @Service
 public class RequestProcessor {
     private final DateTimeService timeService;
+    private final MailService mailService;
 
-    public RequestProcessor(DateTimeService timeService) {
+    public RequestProcessor(DateTimeService timeService, MailService mailService) {
         this.timeService = timeService;
+        this.mailService = mailService;
     }
 
     public ResponseEntity processRequest(String request) {
@@ -17,13 +19,13 @@ public class RequestProcessor {
         String [] requestSplit= request.split(" ");
 
         if(requestSplit[0].equals("!heure")){
-            return DateTimeService.getTime();
+            return timeService.getTime();
         }
         if(requestSplit[0].equals("!date")){
-            return DateTimeService.getDate();
+            return timeService.getDate();
         }
-         if(requetteSplit[0].equals("!mail")){
-            return mailService.sendMail(requetteSplit[1],requetteSplit[2],requetteSplit[3]);
+         if(requestSplit[0].equals("!mail")){
+            return mailService.sendMail(requestSplit[1],requestSplit[2],requestSplit[3]);
          }
        
 

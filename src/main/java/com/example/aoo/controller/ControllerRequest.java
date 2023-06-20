@@ -19,7 +19,7 @@ public class ControllerRequest {
     @PostMapping("/processRequest")
     public ResponseEntity processRequest(@RequestBody RequestDto requestDTO) {
 
-        return requestProcessor.processRequette(requestDTO.getRequest());
+        return requestProcessor.processRequest(requestDTO.getRequest());
     }
 
 }
