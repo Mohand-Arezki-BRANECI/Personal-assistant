@@ -11,4 +11,4 @@ COPY target/AOO-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "my-spring-boot-app.jar"]
+CMD ["java", "-jar", "AOO-0.0.1-SNAPSHOT.jar"]
