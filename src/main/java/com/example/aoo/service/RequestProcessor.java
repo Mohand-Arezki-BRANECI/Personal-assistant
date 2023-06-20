@@ -8,10 +8,12 @@ import org.springframework.http.ResponseEntity;
 public class RequestProcessor {
     private final DateTimeService timeService;
     private final MailService mailService;
+    private final MeteoService meteoService;
 
-    public RequestProcessor(DateTimeService timeService, MailService mailService) {
+    public RequestProcessor(DateTimeService timeService, MailService mailService,MeteoService meteoService) {
         this.timeService = timeService;
         this.mailService = mailService;
+        this.meteoService = meteoService;
     }
 
     public ResponseEntity processRequest(String request) {
@@ -27,8 +29,11 @@ public class RequestProcessor {
          if(requestSplit[0].equals("!mail")){
             return mailService.sendMail(requestSplit[1],requestSplit[2],requestSplit[3]);
          }
+         if(requestSplit[0].equals("!meteo")){
+           return meteoService.getMeteo(requestSplit);
+         }
        
-
         return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 }
+
