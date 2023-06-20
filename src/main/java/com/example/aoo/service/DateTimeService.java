@@ -15,16 +15,16 @@ public class DateTimeService {
         String pattern = "HH:mm:ss";
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        String formattedTime = currentTime.format(formatter);
-        return new ResponseEntity<>(formattedTime, HttpStatus.OK);
+        String timeResponse = "Il est "+currentTime.format(formatter);
+        return new ResponseEntity<>(timeResponse, HttpStatus.OK);
     }
 
     public  ResponseEntity<String> getDate() {
         String pattern = "dd-MM-yyyy";
         LocalDateTime currentDate = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        String formattedDate = currentDate.format(formatter);
-        return new ResponseEntity<>(formattedDate, HttpStatus.OK);
+        String dateResponse = "Nous sommes le "+currentDate.format(formatter);
+        return new ResponseEntity<>(dateResponse, HttpStatus.OK);
     }
 
 }
