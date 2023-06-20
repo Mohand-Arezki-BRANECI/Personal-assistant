@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ControllerRequest {
 
     public final RequestProcessor requestProcessor;
-
-    public ControllerRequest(RequestProcessor requestProcessor) {
-        this.requestProcessor = requestProcessor;
+    
+    public ControllerRequest(RequestProcessor requetteProcessor) {
+        this.requestProcessor = requetteProcessor;
     }
 
     @PostMapping("/processRequest")
@@ -21,5 +21,5 @@ public class ControllerRequest {
 
         return requestProcessor.processRequest(requestDTO.getRequest());
     }
-
 }
+
