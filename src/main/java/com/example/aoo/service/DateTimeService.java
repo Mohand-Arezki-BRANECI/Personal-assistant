@@ -1,10 +1,8 @@
 package com.example.aoo.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -15,20 +13,30 @@ import java.util.TimeZone;
 @Service
 public class DateTimeService {
 
-    public ResponseEntity<String> getTime() {
+    public ResponseEntity<String> getTime(String[] requestSplit) {
+        if(requestSplit.length == 1 ){
+            return getLocalTime();
+        }
+        else {
+            return getTimeInCountry(requestSplit[1]);
+        }
+    }
+
+    public ResponseEntity<String> getDate(String[] requestSplit) {
+        if(requestSplit.length == 1){
+            return getLocalDate();
+        }
+        else {
+            return getDateInCountry(requestSplit[1]);
+        }
+    }
+
+    public ResponseEntity<String> getLocalTime() {
         String pattern = "HH:mm:ss";
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         String timeResponse = "Il est "+currentTime.format(formatter);
         return new ResponseEntity<>(timeResponse, HttpStatus.OK);
-    }
-
-    public ResponseEntity<String> getDate() {
-        String pattern = "dd-MM-yyyy";
-        LocalDateTime currentDate = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        String dateResponse = "Nous sommes le "+currentDate.format(formatter);
-        return new ResponseEntity<>(dateResponse, HttpStatus.OK);
     }
 
     public ResponseEntity<String> getTimeInCountry(String country) {
@@ -41,6 +49,14 @@ public class DateTimeService {
         String timeResponse = "Heure locale de "+country+" : "+time.format(formatter);
 
         return new ResponseEntity<>(timeResponse, HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> getLocalDate() {
+        String pattern = "dd-MM-yyyy";
+        LocalDateTime currentDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        String dateResponse = "Nous sommes le "+currentDate.format(formatter);
+        return new ResponseEntity<>(dateResponse, HttpStatus.OK);
     }
 
     public ResponseEntity<String> getDateInCountry(String country) {

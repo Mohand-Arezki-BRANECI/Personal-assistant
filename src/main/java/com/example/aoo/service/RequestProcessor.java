@@ -18,12 +18,10 @@ public class RequestProcessor {
         String [] requestSplit= request.split(" ");
 
         if(requestSplit[0].equals("!heure")){
-            //return timeService.getTime();
-            return timeService.getTimeInCountry(requestSplit[1]);
+            return timeService.getTime(requestSplit);
         }
         if(requestSplit[0].equals("!date")){
-            //return timeService.getDate();
-            return timeService.getDateInCountry(requestSplit[1]);
+            return timeService.getDate(requestSplit);
         }
 
         return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
