@@ -1,6 +1,6 @@
 package com.example.aoo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RequetteProcessor {
     private final MailService mailService;
+    private final MeteoService meteoService;
 
-     public RequetteProcessor(MailService mailService) {
+     public RequetteProcessor(MailService mailService, MeteoService meteoService) {
             this.mailService = mailService;
+         this.meteoService = meteoService;
      }
 
         public ResponseEntity processRequette(String requette) {
@@ -20,9 +22,12 @@ public class RequetteProcessor {
             if(requetteSplit[0].equals("!mail")){
              return mailService.sendMail(requetteSplit[1],requetteSplit[2],requetteSplit[3]);
             }
+            if (requetteSplit[0].equals("!meteo")){
+                return meteoService.getMeteo(requetteSplit);
+            }
 
 
-            return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+            return new  ResponseEntity<>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
         }
 
 }
