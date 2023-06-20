@@ -1,15 +1,14 @@
 package com.example.aoo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RequetteProcessor {
+public class RequestProcessor {
     private final MailService mailService;
 
-     public RequetteProcessor(MailService mailService) {
+     public RequestProcessor(MailService mailService) {
             this.mailService = mailService;
      }
 

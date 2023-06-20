@@ -1,24 +1,24 @@
 package com.example.aoo.controller;
 
 import com.example.aoo.dto.RequestDto;
-import com.example.aoo.service.RequetteProcessor;
+import com.example.aoo.service.RequestProcessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
-public class ControllerRequette {
-    public final RequetteProcessor requetteProcessor;
+public class ControllerRequest {
+    public final RequestProcessor requestProcessor;
 
-public ControllerRequette(RequetteProcessor requetteProcessor) {
-        this.requetteProcessor = requetteProcessor;
+public ControllerRequest(RequestProcessor requetteProcessor) {
+        this.requestProcessor = requetteProcessor;
     }
 
-    @PostMapping("/processRequette")
+    @PostMapping("/processRequest")
     public ResponseEntity processRequest(@RequestBody RequestDto requestDTO) {
 
-        return requetteProcessor.processRequette(requestDTO.getRequest());
+        return requestProcessor.processRequette(requestDTO.getRequest());
     }
 
 
