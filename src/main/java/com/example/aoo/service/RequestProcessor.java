@@ -1,5 +1,4 @@
 package com.example.aoo.service;
-
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,11 @@ public class RequestProcessor {
         if(requestSplit[0].equals("!date")){
             return DateTimeService.getDate();
         }
+         if(requetteSplit[0].equals("!mail")){
+            return mailService.sendMail(requetteSplit[1],requetteSplit[2],requetteSplit[3]);
+         }
+       
 
         return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 }
-

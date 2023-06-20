@@ -6,4 +6,3 @@ public class RequestDto {
         return this.request;
     }
 }
-
