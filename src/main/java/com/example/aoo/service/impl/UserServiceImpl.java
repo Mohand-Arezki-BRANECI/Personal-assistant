@@ -2,14 +2,10 @@ package com.example.aoo.service.impl;
 
 import com.example.aoo.repository.UserRepository;
 import com.example.aoo.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-
-
-import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
