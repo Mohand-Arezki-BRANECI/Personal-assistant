@@ -1,10 +1,23 @@
 package com.example.aoo.model;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import jakarta.persistence.*;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
-public class User {
+public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,55 +27,41 @@ public class User {
     private String passGoogle;
     private String mailGoogle;
 
-    public Long getId() {
-        return id;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String getPassword() {
+        return null;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
+    @Override
+    public String getUsername() {
+        // email in our case
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getPassGoogle() {
-        return passGoogle;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
-
-    public void setPassGoogle(String passGoogle) {
-        this.passGoogle = passGoogle;
-    }
-
-    public String getMailGoogle() {
-        return mailGoogle;
-    }
-
-    public void setMailGoogle(String mailGoogle) {
-        this.mailGoogle = mailGoogle;
-    }
-
-    public User() {
-    }
-
 }
