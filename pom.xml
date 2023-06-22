@@ -67,9 +67,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
         </dependency>
-
-
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.social/spring-social-core -->
         <dependency>
             <groupId>org.springframework.social</groupId>
@@ -93,6 +90,40 @@
             <version>1.1.5.RELEASE</version>
         </dependency>
  
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.2</version>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-google</artifactId>
@@ -119,14 +150,18 @@
 			<url>file://///Users/kenztouari/Desktop/Cours/BAC+3/ArchiOO</url>
 		</repository>
 	</distributionManagement>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
