@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.example.aoo.service.JwtService;
+import com.example.aoo.service.IJwtService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtServiceImpl implements IJwtService {
     @Value("${token.signing.key}")
     private String jwtSigningKey;
     @Override

@@ -1,7 +1,7 @@
 package com.example.aoo.service.impl;
 
 import com.example.aoo.repository.UserRepository;
-import com.example.aoo.service.UserService;
+import com.example.aoo.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
     @Override
     public UserDetailsService userDetailsService() {

@@ -1,4 +1,4 @@
-package com.example.aoo.dao.response;
+package com.example.aoo.dao.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtAuthenticationResponse {
-    private String token;
-    private String type = "Bearer";
+public class ChatRequest {
+    private String request;
+    public String getRequest() {
+        return this.request;
+    }
 }
