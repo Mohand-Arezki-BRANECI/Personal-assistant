@@ -67,9 +67,10 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
         </dependency>
- 
- 
-        <!-- https://mvnrepository.com/artifact/org.springframework.social/spring-social-core -->
+
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.social/spring-social-core -->
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-core</artifactId>
@@ -97,7 +98,7 @@
             <artifactId>spring-social-google</artifactId>
             <version>1.0.0.RELEASE</version>
         </dependency>
- 
+
 
         <dependency>
             <groupId>commons-validator</groupId>
@@ -111,6 +112,13 @@
 		</dependency>
 
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>local-repo</id>
+			<url>file://///Users/kenztouari/Desktop/Cours/BAC+3/ArchiOO</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
