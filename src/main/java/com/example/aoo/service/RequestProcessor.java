@@ -21,10 +21,13 @@ public class RequestProcessor {
         String [] requestSplit= request.split(" ");
 
         if(requestSplit[0].equals("!heure")){
-            return timeService.getTime();
+            return timeService.getTime(requestSplit);
         }
         if(requestSplit[0].equals("!date")){
-            return timeService.getDate();
+            return timeService.getDate(requestSplit);
+        }
+        if(requestSplit[0].equals("!fin")){
+            return timeService.getEndOfClass();
         }
          if(requestSplit[0].equals("!mail")){
             return mailService.sendMail(requestSplit[1],requestSplit[2],requestSplit[3]);
@@ -32,7 +35,6 @@ public class RequestProcessor {
          if(requestSplit[0].equals("!meteo")){
            return meteoService.getMeteo(requestSplit);
          }
-       
         return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 }
