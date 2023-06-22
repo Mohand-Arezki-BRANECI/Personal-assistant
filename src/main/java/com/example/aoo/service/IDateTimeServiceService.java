@@ -2,7 +2,7 @@ package com.example.aoo.service;
 
 import org.springframework.http.ResponseEntity;
 
-public interface DateTimeServiceInterface extends IServiceChat {
+public interface IDateTimeServiceService extends IServiceChatService {
     ResponseEntity<String> getTime(String[] requestSplit);
 
     ResponseEntity<String> getDate(String[] requestSplit);

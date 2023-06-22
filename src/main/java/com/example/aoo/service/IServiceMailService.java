@@ -2,6 +2,6 @@ package com.example.aoo.service;
 
 import org.springframework.http.ResponseEntity;
 
-public interface IMailService extends IServiceChat {
+public interface IServiceMailService extends IServiceChatService {
     ResponseEntity<String> sendMail(String[] requestSplit);
 }

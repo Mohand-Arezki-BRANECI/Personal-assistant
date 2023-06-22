@@ -1,7 +1,7 @@
 package com.example.aoo.service.impl;
 
 import com.example.aoo.model.Command;
-import com.example.aoo.service.IMailService;
+import com.example.aoo.service.IServiceMailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MailService implements IMailService {
+public class MailServiceImpl implements IServiceMailService {
     private final RestTemplate restTemplate;
     @Value("${mail.url}")
     private String mailUrl;
 
-    public MailService(RestTemplate restTemplate) {
+    public MailServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

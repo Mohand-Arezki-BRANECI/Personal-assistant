@@ -1,7 +1,7 @@
 package com.example.aoo.service.impl;
 
 import com.example.aoo.model.Command;
-import com.example.aoo.service.IMeteoService;
+import com.example.aoo.service.IServiceMeteoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MeteoService  implements IMeteoService {
+public class MeteoServiceImpl implements IServiceMeteoService {
     private final RestTemplate restTemplate;
 
     @Value("${meteo_url}")
     private String meteoURL;
-    public MeteoService(RestTemplate restTemplate) {
+    public MeteoServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

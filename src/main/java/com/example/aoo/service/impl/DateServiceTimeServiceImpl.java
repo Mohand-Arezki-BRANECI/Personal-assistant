@@ -1,7 +1,7 @@
 package com.example.aoo.service.impl;
 
 import com.example.aoo.model.Command;
-import com.example.aoo.service.DateTimeServiceInterface;
+import com.example.aoo.service.IDateTimeServiceService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 @Service
-public class DateTimeService implements DateTimeServiceInterface {
+public class DateServiceTimeServiceImpl implements IDateTimeServiceService {
 
     @Value("${time.end}")
     private String time;

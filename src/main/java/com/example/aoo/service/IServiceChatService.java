@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface IServiceChat {
+public interface IServiceChatService {
 
     List<Command> getCommand();
 

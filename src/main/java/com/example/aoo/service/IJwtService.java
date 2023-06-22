@@ -2,7 +2,7 @@ package com.example.aoo.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-public interface JwtService {
+public interface IJwtService {
     String extractUserName(String token);
 
     String generateToken(UserDetails userDetails);
