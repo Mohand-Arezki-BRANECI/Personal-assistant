@@ -109,10 +109,87 @@ public class CalendarService{
 				model.addAttribute("calendarObjs", new ArrayList<CalendarObj>());
 			}
 
-			return "agenda";
+			return getAgendaPage ();
 		} else {
 			return "/";
 		}
+	}
+
+	private String getAgendaPage(){
+		return "<!DOCTYPE html>\n" +
+				"<html>\n" +
+				"<head>\n" +
+				"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+				"\n" +
+				"    <title th:text=\"${title}\"></title>\n" +
+				"    <style>\n" +
+				"        .navbar {\n" +
+				"            overflow: hidden;\n" +
+				"            background-color: #333;\n" +
+				"            position: fixed;\n" +
+				"            top: 0;\n" +
+				"            width: 100%;\n" +
+				"        }\n" +
+				"\n" +
+				"        .navbar a {\n" +
+				"            float: right;\n" +
+				"            display: block;\n" +
+				"            color: #f2f2f2;\n" +
+				"            text-align: center;\n" +
+				"            padding: 14px 16px;\n" +
+				"            text-decoration: none;\n" +
+				"            font-size: 17px;\n" +
+				"        }\n" +
+				"\n" +
+				"        .navbar a:hover {\n" +
+				"            background: #ddd;\n" +
+				"            color: black;\n" +
+				"        }\n" +
+				"\n" +
+				"\n" +
+				"        table {\n" +
+				"            width: 100%;\n" +
+				"            border-collapse: collapse;\n" +
+				"            margin: 0 auto;\n" +
+				"        }\n" +
+				"\n" +
+				"        .td1 {\n" +
+				"            width:30%;\n" +
+				"            padding: 10px 10px 10px 5px;\n" +
+				"        }\n" +
+				"\n" +
+				"        .td2 {\n" +
+				"            width:70%;\n" +
+				"            padding: 0px 0px 10px 20px;\n" +
+				"        }\n" +
+				"    </style>\n" +
+				"\n" +
+				"</head>\n" +
+				"<body>\n" +
+				"\n" +
+				"<div class=\"navbar\">\n" +
+				"    <a th:href=\"@{/}\">Logout</a>\n" +
+				"    <a th:href=\"@{/slot/available}\">Available Slots</a>\n" +
+				"    <a th:href=\"@{/calendar}\">Agenda</a>\n" +
+				"    <a th:href=\"@{#}\" style=\"float: left;background: #ddd;color: black;font-weight:bold;\">Spring Boot Application</a>\n" +
+				"</div>\n" +
+				"\n" +
+				"<div style=\"width: 50%;margin: 0 auto;margin-top:120px;padding:20px;border: 1px solid gray;\">\n" +
+				"    <h2 style=\"text-align:center;padding-bottom:20px;\" th:text=\"${title}\"></h2>\n" +
+				"\n" +
+				"    <table>\n" +
+				"        <tbody>\n" +
+				"\n" +
+				"        <tr th:each=\"calendarObj: ${calendarObjs}\">\n" +
+				"            <td th:text=\"${calendarObj.startEnd}\" class=\"td1\"></td>\n" +
+				"            <td th:text=${calendarObj.title} class=\"td2\"></td>\n" +
+				"        </tr>\n" +
+				"        </tbody>\n" +
+				"    </table>\n" +
+				"</div>\n" +
+				"\n" +
+				"</body>\n" +
+				"</html>\n";
 	}
 
 	@RequestMapping(value = "/slot/available", method = RequestMethod.GET)
@@ -136,11 +213,91 @@ public class CalendarService{
 				model.addAttribute("calendarObjs", new ArrayList<CalendarObj>());
 			}
 
-			return "availableslots";
+			return getAvailableSlots ();
 		} else {
 			return "/";
 		}
 	}
+	private String getAvailableSlots() {
+		return "<!DOCTYPE html>\n" +
+				"<html>\n" +
+				"<head>\n" +
+				"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+				"\n" +
+				"<title th:text=\"${title}\"></title>\n" +
+				"<style>\n" +
+				".navbar {\n" +
+				"  overflow: hidden;\n" +
+				"  background-color: #333;\n" +
+				"  position: fixed;\n" +
+				"  top: 0;\n" +
+				"  width: 100%;\n" +
+				"}\n" +
+				"\n" +
+				".navbar a {\n" +
+				"  float: right;\n" +
+				"  display: block;\n" +
+				"  color: #f2f2f2;\n" +
+				"  text-align: center;\n" +
+				"  padding: 14px 16px;\n" +
+				"  text-decoration: none;\n" +
+				"  font-size: 17px;\n" +
+				"}\n" +
+				"\n" +
+				".navbar a:hover {\n" +
+				"  background: #ddd;\n" +
+				"  color: black;\n" +
+				"}\n" +
+				"\n" +
+				"\n" +
+				"table {\n" +
+				"    width: 100%;\n" +
+				"    border-collapse: collapse;\n" +
+				"    margin: 0 auto;\n" +
+				"}\n" +
+				"\n" +
+				".td1 {\n" +
+				"\twidth:50%;\n" +
+				"    padding: 10px 10px 10px 5px;\n" +
+				"}\n" +
+				"\n" +
+				".td2 {\n" +
+				"\twidth:50%;\n" +
+				"    padding: 0px 0px 10px 20px;\n" +
+				"}\n" +
+				"</style>\n" +
+				"\n" +
+				"</head>\n" +
+				"<body>\n" +
+				"\n" +
+				"\t<div class=\"navbar\">\n" +
+				"\t\t<a th:href=\"@{/}\">Logout</a>\n" +
+				"\t\t<a th:href=\"@{/slot/available}\">Available Slots</a>\n" +
+				"\t\t<a th:href=\"@{/calendar}\">Agenda</a>\n" +
+				"\t  \t<a th:href=\"@{#}\" style=\"float: left;background: #ddd;color: black;font-weight:bold;\">Spring Boot Application</a>\n" +
+				"\t</div>\n" +
+				"\n" +
+				"\t<div style=\"width: 50%;margin: 0 auto;margin-top:120px;padding:20px;border: 1px solid gray;\">\n" +
+				"\t\t<h2 style=\"text-align:center;padding-bottom:20px;\" th:text=\"${title}\"></h2>\n" +
+				"\n" +
+				"\t\t<table>\n" +
+				"\t\t\t<tbody>\n" +
+				"\t\t\t\t<tr>\n" +
+				"\t\t\t\t\t<td class=\"td1\" style=\"font-weight:bold;text-align:center;\">Available Time Slots</td>\n" +
+				"\t                <td class=\"td2\" style=\"font-weight:bold;text-align:center;\">Duration (min)</td>\n" +
+				"\t\t\t\t</tr>\n" +
+				"\t\t\t\t<tr th:each=\"calendarObj: ${calendarObjs}\">\n" +
+				"\t                <td th:text=\"${calendarObj.startEnd}\" class=\"td1\" style=\"text-align:center;\"></td>\n" +
+				"\t                <td th:text=${calendarObj.duration} class=\"td2\" style=\"text-align:center;\"></td>\n" +
+				"\t            </tr>\n" +
+				"\t\t\t</tbody>\n" +
+				"\t\t</table>\n" +
+				"\t</div>\n" +
+				"\n" +
+				"</body>\n" +
+				"</html>\n";
+	}
+
 
 	public Set<Event> getEvents() throws IOException {
 		return this.events;
@@ -154,11 +311,75 @@ public class CalendarService{
 
 	}
 
+	private String getLoginPage() {
+		return "<!DOCTYPE html>\n" +
+				"<html>\n" +
+				"<head>\n" +
+				"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+				"<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n" +
+				"<style>\n" +
+				"body {\n" +
+				"  font-family: Arial, Helvetica, sans-serif;\n" +
+				"}\n" +
+				"\n" +
+				"* {\n" +
+				"  box-sizing: border-box;\n" +
+				"}\n" +
+				"\n" +
+				"\n" +
+				".container {\n" +
+				"  width: 50%;\n" +
+				"  border-radius: 5px;\n" +
+				"  background-color: #f2f2f2;\n" +
+				"  padding: 20px 0 30px 0;\n" +
+				"  position: fixed;\n" +
+				"  top: 50%;\n" +
+				"  left: 50%;\n" +
+				"  transform: translate(-50%, -50%);\n" +
+				"}\n" +
+				"\n" +
+				".btn {\n" +
+				"  padding: 12px;\n" +
+				"  border: none;\n" +
+				"  border-radius: 4px;\n" +
+				"  font-size: 17px;\n" +
+				"  margin: 35%;\n" +
+				"  line-height: 20px;\n" +
+				"  text-decoration: none;\n" +
+				"}\n" +
+				"\n" +
+				".google {\n" +
+				"  background-color: #dd4b39;\n" +
+				"  color: white;\n" +
+				"}\n" +
+				"\n" +
+				"</style>\n" +
+				"\n" +
+				"</head>\n" +
+				"<body>\n" +
+				"\n" +
+				"<h2 style=\"text-align:center; color:red\" th:utext=\"${message}\"></h2>\n" +
+				"\n" +
+				"<div class=\"container\">\n" +
+				"  <h2 style=\"text-align:center\">Spring Boot Application : Calendar Event</h2>\n" +
+				"\n" +
+				"  <div>\n" +
+				"    <a th:href=\"{@{/calendar}}\" class=\"google btn\">\n" +
+				"        <i class=\"fa fa-google fa-fw\"></i> Login with Google\n" +
+				"    </a>\n" +
+				"  </div>\n" +
+				"</div>\n" +
+				"\n" +
+				"\n" +
+				"</body>\n" +
+				"</html>";
+	}
+
+
 	@RequestMapping(value = { "/", "/login", "/logout" }, method = RequestMethod.GET)
 	public String login(Model model) {
 		isAuthorised = false;
-
-		return "login";
+		return getLoginPage ();
 	}
 
 
