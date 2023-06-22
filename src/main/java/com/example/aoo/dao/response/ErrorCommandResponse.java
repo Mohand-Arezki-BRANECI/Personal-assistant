@@ -5,11 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtAuthenticationResponse {
-    private String token;
-    private String type = "Bearer";
+public class ErrorCommandResponse {
+    private String triedCommand;
+    private List<Enum> l ;
+    private String message ;
 }

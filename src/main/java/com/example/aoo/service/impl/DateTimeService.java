@@ -1,5 +1,6 @@
 package com.example.aoo.service.impl;
 
+import com.example.aoo.model.Command;
 import com.example.aoo.service.DateTimeServiceInterface;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 @Service
@@ -121,4 +124,50 @@ public class DateTimeService implements DateTimeServiceInterface {
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 
+    @Override
+    public List<Command> getCommand() {
+        List<Command> c = new ArrayList<>();
+        c.add(Command.DATE);
+        c.add(Command.TIME);
+        c.add(Command.END_OF_CLASS);
+        c.add(Command.LOCAL_DATE);
+        c.add(Command.LOCAL_TIME);
+        c.add(Command.DATE_IN_COUNTRY);
+        return c;
+    }
+
+    @Override
+    public ResponseEntity processRequest(String command, String info) {
+       String [] requestSplit = info.split(" ");
+        if (command.equals(Command.DATE.getValue())) {
+            return getDate(requestSplit);
+        }
+        if (command.equals(Command.TIME.getValue())) {
+            return getTime(requestSplit);
+        }
+        if (command.equals(Command.END_OF_CLASS.getValue())) {
+            return getEndOfClass();
+        }
+        if(command.equals(Command.LOCAL_DATE.getValue())){
+            return getLocalDate();
+        }
+        if(command.equals(Command.LOCAL_TIME.getValue())){
+            return getLocalTime();
+        }
+        if(command.equals(Command.DATE_IN_COUNTRY.getValue())){
+            return getDateInCountry(requestSplit[1]);
+        }
+        return new ResponseEntity<>("Commande non reconnue", HttpStatus.BAD_REQUEST);
+    }
+
+
+    @Override
+    public boolean matchCommand(String command) {
+        for (Command c : getCommand()) {
+            if (c.getValue().equals(command)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
