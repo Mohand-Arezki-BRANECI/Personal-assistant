@@ -1,5 +1,6 @@
-package com.example.aoo.service;
+package com.example.aoo.service.impl;
 
+import com.example.aoo.service.IMeteoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class MeteoService {
+public class MeteoService  implements IMeteoService {
     private final RestTemplate restTemplate;
 
     @Value("${meteo_url}")
@@ -18,6 +19,8 @@ public class MeteoService {
         this.restTemplate = restTemplate;
     }
 
+
+    @Override
     public ResponseEntity getMeteo(String [] t){
 
         float f1 = Float.parseFloat(t[1]);

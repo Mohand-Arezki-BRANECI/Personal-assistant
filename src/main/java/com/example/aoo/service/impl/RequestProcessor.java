@@ -1,11 +1,13 @@
-package com.example.aoo.service;
+package com.example.aoo.service.impl;
+import com.example.aoo.service.IRequestProcessor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
 @Service
-public class RequestProcessor {
+public class RequestProcessor implements IRequestProcessor {
     private final DateTimeService timeService;
     private final MailService mailService;
     private final MeteoService meteoService;
@@ -15,7 +17,7 @@ public class RequestProcessor {
         this.mailService = mailService;
         this.meteoService = meteoService;
     }
-
+    @Override
     public ResponseEntity processRequest(String request) {
         request = request.toLowerCase();
         String [] requestSplit= request.split(" ");
@@ -35,7 +37,7 @@ public class RequestProcessor {
          if(requestSplit[0].equals("!meteo")){
            return meteoService.getMeteo(requestSplit);
          }
-        return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+        return new  ResponseEntity<>(new HttpHeaders(),HttpStatus.BAD_REQUEST);
     }
 }
 

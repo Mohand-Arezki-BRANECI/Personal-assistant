@@ -1,5 +1,6 @@
-package com.example.aoo.service;
+package com.example.aoo.service.impl;
 
+import com.example.aoo.service.DateTimeServiceInterface;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +15,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
 @Service
-public class DateTimeService {
+public class DateTimeService implements DateTimeServiceInterface {
 
     @Value("${time.end}")
     private String time;
 
-
+@Override
     public ResponseEntity<String> getTime(String[] requestSplit) {
         if(requestSplit.length == 1 ){
             return getLocalTime();
@@ -29,6 +30,7 @@ public class DateTimeService {
         }
     }
 
+    @Override
     public ResponseEntity<String> getDate(String[] requestSplit) {
         if(requestSplit.length == 1){
             return getLocalDate();
@@ -37,7 +39,7 @@ public class DateTimeService {
             return getDateInCountry(requestSplit[1]);
         }
     }
-
+@Override
     public ResponseEntity<String> getLocalTime() {
         String pattern = "HH:mm:ss";
         LocalDateTime currentTime = LocalDateTime.now();
@@ -45,7 +47,7 @@ public class DateTimeService {
         String timeResponse = "Il est "+currentTime.format(formatter);
         return new ResponseEntity<>(timeResponse, HttpStatus.OK);
     }
-
+@Override
     public ResponseEntity<String> getTimeInCountry(String country) {
         ZoneId countryTime = getZoneId(country);
         if (countryTime == null) {
@@ -59,7 +61,7 @@ public class DateTimeService {
 
         return new ResponseEntity<>(timeResponse, HttpStatus.OK);
     }
-
+@Override
     public ResponseEntity<String> getLocalDate() {
         String pattern = "dd-MM-yyyy";
         LocalDateTime currentDate = LocalDateTime.now();
@@ -67,7 +69,7 @@ public class DateTimeService {
         String dateResponse = "Nous sommes le "+currentDate.format(formatter);
         return new ResponseEntity<>(dateResponse, HttpStatus.OK);
     }
-
+@Override
     public ResponseEntity<String> getDateInCountry(String country) {
         ZoneId countryDate = getZoneId(country);
 
@@ -94,6 +96,7 @@ public class DateTimeService {
             }
         return null;
     }
+    @Override
  public ResponseEntity<String> getEndOfClass() {
         Timestamp timeEndOfClass = new Timestamp(Long.parseLong(time));
         Timestamp timeDiffernce = new Timestamp(timeEndOfClass.getTime()- Instant.now().toEpochMilli());

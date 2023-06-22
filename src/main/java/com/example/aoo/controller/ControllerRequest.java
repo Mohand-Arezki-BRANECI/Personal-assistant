@@ -1,7 +1,7 @@
 package com.example.aoo.controller;
 
 import com.example.aoo.dto.RequestDto;
-import com.example.aoo.service.RequestProcessor;
+import com.example.aoo.service.impl.RequestProcessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
