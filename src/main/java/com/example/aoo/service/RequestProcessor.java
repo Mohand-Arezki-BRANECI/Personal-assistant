@@ -14,6 +14,7 @@ public class RequestProcessor {
         this.timeService = timeService;
         this.mailService = mailService;
         this.meteoService = meteoService;
+
     }
 
     public ResponseEntity processRequest(String request) {
@@ -35,6 +36,9 @@ public class RequestProcessor {
          if(requestSplit[0].equals("!meteo")){
            return meteoService.getMeteo(requestSplit);
          }
+        if(requestSplit[0].equals("!pokemon")){
+            return new RamdPokemonService().getRamdPokemon();
+        }
         return new  ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 }
