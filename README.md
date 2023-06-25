@@ -8,10 +8,11 @@
 - RequestDto -> 
 
 ### Services 
-- RequestProcessor -> redirige vers le bon service selon le mot présent dans la requête 
-- DateTimeService -> permet de donner la date ou l'heure selon la demande
+- RequestProcessor -> redirige vers le bon service selon le mot présent dans la requête  
+- DateTimeService -> permet de donner la date ou l'heure selon la demande mais égalemetn d'avoir le nombre de jours avnt la fin des cours ou le nombres de jours depuis la fin des cours formater en html
 - MailService -> permet d'envoyer un mail à un destinataire donné, avec l'objet et le contenu passés en paramètres
 - MeteoService -> permet d'obtenir la météo selon une longitude et une latitude données
+- PokemonService -> permet d'avoir le nom et un image d'un pokemon ramdom fomrater dans des balises HTML
 
 ### DIFFICULTES RENCONTREES POUR LE FRONT
 
