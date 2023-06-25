@@ -19,11 +19,11 @@ public class RamdPokemonService {
     String apiUrl = API_BASE_URL + randomId;
 
     public ResponseEntity<String> getRamdPokemon() {
-/*
+
      ModelAndView modelAndView = new ModelAndView("pokemonTemplate");
      modelAndView.addObject("url", "");
-     modelAndView.addObject("name","");*/
-     String reponse = ""; //modelAndView.toString();
+     modelAndView.addObject("name","");
+     modelAndView.toString();
 
         var client = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder(
@@ -40,11 +40,13 @@ public class RamdPokemonService {
             System.out.println("Status  : " + response.statusCode());
             System.out.println("Headers : " + response.headers());
             System.out.println("Body    : " + response.body());
+            return new ResponseEntity<>(response.body(), HttpStatus.OK);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(reponse, HttpStatus.OK);
+
     }
 
 
