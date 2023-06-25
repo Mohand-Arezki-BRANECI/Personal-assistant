@@ -37,9 +37,9 @@ public class RamdPokemonService {
 
         try {
             var response = client.send(request,  HttpResponse.BodyHandlers.ofString());
-            System.out.println("Status  : " + response.statusCode());
-            System.out.println("Headers : " + response.headers());
-            System.out.println("Body    : " + response.body());
+//            System.out.println("Status  : " + response.statusCode());
+//            System.out.println("Headers : " + response.headers());
+//            System.out.println("Body    : " + response.body());
             return new ResponseEntity<>(response.body(), HttpStatus.OK);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
